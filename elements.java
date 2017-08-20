@@ -17,20 +17,25 @@ public class elements
 
 	public static void main(String args[])
 {
-			
-			System.setProperty("webdriver.gecko.driver", "/Users/renuka/Documents/selenium software/geckodriver");
-			WebDriver driver = new FirefoxDriver(); 
+		
+		//initialize webdriver
+		System.setProperty("webdriver.gecko.driver", "/Users/renuka/Documents/selenium software/geckodriver");
+		WebDriver driver = new FirefoxDriver(); 
 		WebDriverWait myWait = new WebDriverWait(driver, 10);
 		driver.getCurrentUrl();
 		
+		//go to webpage
 		String baseUrl = "http://newtours.demoaut.com/";
 		driver.get(baseUrl);
+		
+		//enter user-id and password
 		myWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("userName")));
 		driver.findElement(By.name("userName")).sendKeys ("sam123");
-		
-		//driver.findElement(By.linkText("REGISTER")).click();
 		driver.findElement(By.name("password")).sendKeys ("sam123"); // textbox
 		driver.findElement(By.name("login")).click(); // clcik button
+		
+		// This is just a snippet of code to demonstrate radio button and is commented out.
+		//***********
 		/*List<WebElement> rb = driver.findElements(By.name("tripType"));	
 		boolean bValue = false;
 		bValue = rb.get(0).isSelected();
@@ -41,13 +46,20 @@ public class elements
 			// If the first radio button is not selected by default, the first will be selected
 			rb.get(0).click();
 		} */
-		 driver.findElement(By.cssSelector("input[value='roundtrip']")).click(); // radio button
-		 WebElement element1 = driver.findElement(By.name("passCount"));
-		 Select pass = new Select(element1); // dropdown
-		 pass.selectByValue("2");
-		 WebElement element2 = driver.findElement(By.name("fromPort"));
-		 Select from = new Select(element2);
-		 from.selectByVisibleText("London");
+		//*****************
+		
+		
+		driver.findElement(By.cssSelector("input[value='roundtrip']")).click(); // select roundtrip radiobutton
+		
+		//select number of passengers
+		WebElement element1 = driver.findElement(By.name("passCount")); 
+		Select pass = new Select(element1); // dropdown
+		pass.selectByValue("2");
+		
+		//Arrival/Departure 
+		WebElement element2 = driver.findElement(By.name("fromPort"));
+		Select from = new Select(element2);
+		from.selectByVisibleText("London");
 		 
 		Select month1 = new Select(driver.findElement(By.name("fromMonth")));
 		month1.selectByIndex(11);
@@ -59,13 +71,19 @@ public class elements
 		month2.selectByIndex(11);
 		Select day2 = new Select(driver.findElement(By.name("toDay")));
 		day2.selectByValue("10");
+		
+		//Select Preferences
 		driver.findElement(By.cssSelector("input[value='Business']")).click();
 		Select airline = new Select(driver.findElement(By.name("airline")));
 		airline.selectByVisibleText("Unified Airlines");
 		driver.findElement(By.name("findFlights")).click();
+		
+		//Select Flight
 		driver.findElement(By.cssSelector("input[name='outFlight'][value='Blue Skies Airlines$361$271$7:10']")).click();
 		driver.findElement(By.cssSelector("input[name='inFlight'][value='Pangea Airlines$632$282$16:37']")).click();
 		driver.findElement(By.cssSelector("input[name='reserveFlights']")).click();
+		
+		//Enter Passenger Details
 		driver.findElement(By.cssSelector("input[name='passFirst0']")).sendKeys("renuka");
 		driver.findElement(By.cssSelector("input[name='passLast0']")).sendKeys("padwal");
 		driver.findElement(By.cssSelector("input[name='passFirst0']")).sendKeys("renuka");
@@ -99,51 +117,12 @@ public class elements
 		driver.findElement(By.name("delState")).sendKeys("nj");
 		driver.findElement(By.name("delZip")).clear();
 		driver.findElement(By.name("delZip")).sendKeys("77777");
-		//driver.findElement(By.name("billCountry")).sendKeys("67163");
 		Select delcountry = new Select(driver.findElement(By.name("delCountry")));
 		delcountry.selectByVisibleText("AUSTRIA");
 		Alert alert = driver.switchTo().alert();
 		alert.accept();
 		driver.findElement(By.name("buyFlights")).click();
 		driver.findElement(By.cssSelector("img[src='/images/forms/Logout.gif']")).click();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
-		//driver.navigate().forward();
-		//driver.navigate().back();
-		
-		
-		
-		
-		
-		
-		 
-		 
-		 
-		 
-		 
-		 
-		
-		
-			
-
-	
-
-
-		
-		
-		
-		
-		
-		
 		
 
 	}
